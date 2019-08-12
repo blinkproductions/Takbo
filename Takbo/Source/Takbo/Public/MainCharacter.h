@@ -45,6 +45,8 @@ public:
 	FORCEINLINE UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 
 	/**This is a testing comment from ian*/
+	/**This is a testing comment from ian*/
+	/**This is a testing comment from ian*/
 
 
 protected:
