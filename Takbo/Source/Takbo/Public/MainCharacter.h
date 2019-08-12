@@ -44,6 +44,8 @@ public:
 	FORCEINLINE USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	FORCEINLINE UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 
+	/**This is a testing comment from ian*/
+
 
 protected:
 	// Called when the game starts or when spawned
