@@ -48,6 +48,8 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &AMainCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AMainCharacter::MoveRight);
+
+	PlayerInputComponent->BindAxis("RotateRight", this, &AMainCharacter::RotateRight);
 }
 
 
@@ -56,10 +58,11 @@ void AMainCharacter::MoveForward(float Value)
 	if ((Controller != nullptr) && (Value != 0.f)) // This means if that there is a controller and Value is not 0.f then that means you could do something to move forward
 	{
 		// find out which way is forward
-		const FRotator Rotation = Controller->GetControlRotation();
+		FVector CameraBoomForwardVec = CameraBoom->GetForwardVector();
+		/*const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0.f, Rotation.Yaw, 0.f);
-		FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-		AddMovementInput(Direction, Value);
+		FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);*/
+		AddMovementInput(CameraBoomForwardVec, Value);
 	}
 }
 
@@ -68,9 +71,23 @@ void AMainCharacter::MoveRight(float Value)
 	if ((Controller != nullptr) && (Value != 0.f)) // This means if that there is a controller and Value is not 0.f then that means you could do something to move forward
 	{
 		// find out which way is forward
-		const FRotator Rotation = Controller->GetControlRotation();
+		/*const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0.f, Rotation.Yaw, 0.f);
-		FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-		AddMovementInput(Direction, Value);
+		FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);*/
+
+		FVector CameraBoomRightVec = CameraBoom->GetRightVector();
+
+		AddMovementInput(CameraBoomRightVec, Value);
 	}
 }
+
+void AMainCharacter::RotateRight(float Value)
+{
+	if ((Controller != nullptr) && (Value != 0.f)) 
+	{
+		AddControllerYawInput(Value);
+	}
+}
+
+
+

@@ -27,6 +27,9 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void TurnRightSnap();
+
 	UPROPERTY(EditDefaultsOnly, Category = "Character Maximum Speed")
 	float CharacterMaxMovementSpeed;
 
@@ -44,9 +47,7 @@ public:
 	FORCEINLINE USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	FORCEINLINE UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 
-	/**This is a testing comment from ian*/
-	/**This is a testing comment from ian*/
-	/**This is a testing comment from ian*/
+	
 
 
 protected:
@@ -56,6 +57,7 @@ protected:
 private:
 	void MoveForward(float Value);
 	void MoveRight(float Value);
+	void RotateRight(float Value);
 
 	FVector CurrentVelocity;
 };
