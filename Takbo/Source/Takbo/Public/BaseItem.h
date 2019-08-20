@@ -4,44 +4,42 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Components/StaticMeshComponent.h"
 #include "Components/BoxComponent.h"
-#include "PhysicsEngine/BodyInstance.h"
-#include "Items_Salt.generated.h"
+#include "Components/StaticMeshComponent.h"
+#include "BaseItem.generated.h"
 
 UCLASS()
-class TAKBO_API AItems_Salt : public AActor
+class TAKBO_API ABaseItem : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AItems_Salt();
-	
+	ABaseItem();
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	/** This returns the random quantities for each instance of this item*/
 	int32 GetRandomMass();
-	
+
 	/** This sets the item's mass*/
 	void SetMass();
 
 	void SetScale();
 
+	//These needs to be a UFUNCTION to work
 	UFUNCTION()
-	void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
-
+	virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
 	UFUNCTION()
-	void OnvOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+	virtual void OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
-	/** Overlap volume for functionality to be triggered */
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Floor Switch")
-	UBoxComponent* TriggerBox;
+	/** Base Shape Collision*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Item | Collision")
+	UBoxComponent* CollisionVolume;
 
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* StaticMesh;
-
 
 protected:
 	// Called when the game starts or when spawned
@@ -50,7 +48,7 @@ protected:
 private:
 	UPROPERTY(VisibleAnywhere, Category = "Item Properties")
 	int32 CurrentQuantity;
-	
+
 	UPROPERTY(EditDefaultsOnly, Category = "Item Properties")
 	int32 MaxMass;
 
@@ -64,4 +62,5 @@ private:
 	float Oscillations;
 
 	float RunningTime;
+
 };
