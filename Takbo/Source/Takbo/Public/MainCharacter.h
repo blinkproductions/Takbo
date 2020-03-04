@@ -33,6 +33,21 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Character Maximum Speed")
 	float CharacterMaxMovementSpeed;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalVariables")
+	int Slot1Item;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalVariables")
+	int Slot2Item;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalVariables")
+	int Slot3Item;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalVariables")
+	int Slot4Item;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "LocalVariables")
+	int Slot5Item;
+
 	/** This will allow us to pick a mesh that the character will have*/
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* MeshComponent; // This can be changed to a skeletal mesh later
@@ -60,4 +75,5 @@ private:
 	void RotateRight(float Value);
 
 	FVector CurrentVelocity;
+
 };
